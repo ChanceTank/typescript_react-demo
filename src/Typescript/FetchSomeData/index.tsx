@@ -1,9 +1,12 @@
-//fetch some data from a server to display in the UI
 import { useState, useEffect } from "react";
 const url = "https://www.course-api.com/react-tours-project";
 import { type Tour, tourSchema } from "./schema";
 import OnHoverHighlight from "../highlights/index.tsx";
 
+/**
+ * Fetches data from a server to display in the UI.
+ * @returns {JSX.Element} The component that fetches and displays the data.
+ */
 function Component() {
 	// setup state values
 	const [tours, setTours] = useState<Tour[]>([]);

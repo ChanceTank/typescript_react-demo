@@ -1,3 +1,6 @@
+/**
+ * Defines the schema for a tour object.
+ */
 import { z } from 'zod';
 
 export const tourSchema = z.object({
