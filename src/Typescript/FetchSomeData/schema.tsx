@@ -11,4 +11,4 @@ export const tourSchema = z.object({
   price: z.string(),
 });
 
-export type Tour = z.infer<typeof tourSchema>;
+export type Scheme = z.infer<typeof tourSchema>;//infer the type from the schema

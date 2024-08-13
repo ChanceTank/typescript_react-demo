@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 const url = "https://www.course-api.com/react-tours-project";
-import { type Tour, tourSchema } from "./schema";
+import { type Scheme, tourSchema } from "./schema";
 import OnHoverHighlight from "../highlights/index.tsx";
 
 /**
@@ -9,9 +9,9 @@ import OnHoverHighlight from "../highlights/index.tsx";
  */
 function Component() {
 	// setup state values
-	const [tours, setTours] = useState<Tour[]>([]);
+	const [tours, setTours] = useState<Scheme[]>([]);
 	const [isLoading, setDataLoading] = useState(false);
-	const [isError, setIsError] = useState<string | null>(null);
+	const [isError, setError] = useState<string | null>(null);
 
 	// fetch data
 	useEffect(() => {
@@ -23,7 +23,7 @@ function Component() {
 					//check for 404
 					throw new Error(`Failed to fetch tours...`);
 				}
-				const rawData: Tour[] = await response.json();
+				const rawData: Scheme[] = await response.json();
 				const result = tourSchema.array().safeParse(rawData); //check data matches schema
 
 				if (!result.success) {
@@ -34,7 +34,7 @@ function Component() {
 			} catch (error) {
 				const message =
 					error instanceof Error ? error.message : "there was an error...";
-				setIsError(message);
+				setError(message);
 			} finally {
 				setDataLoading(false); //everything is done
 			}
@@ -54,7 +54,7 @@ function Component() {
 			<h2 className="mb-1">Tours</h2>
 			{tours.map((tour) => {
 				return (
-				<OnHoverHighlight key="1">
+				<OnHoverHighlight>{/*wrap the text in highlighter*/}
 					<p key={tour.id} className="mb-1" >
 						{tour.name}
 					</p>

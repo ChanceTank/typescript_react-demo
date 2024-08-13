@@ -26,15 +26,15 @@ type ComponentProps = { children: React.ReactNode };
 
 
 function OnHoverHighlight({ children }: ComponentProps) {
-	const [isHovered, setIsHovered] = useState(false);
+	const [isHovered, setIsHovered] = useState(false); //state for hover
 
 	return (
 		<span
 			style={{
 				color: isHovered ? "red" : "black",
 			}}
-			onMouseEnter={() => {setIsHovered(true)}}
-			onMouseLeave={() => {setIsHovered(false)}}>
+			onMouseEnter={() => {setIsHovered(true)}}//event handler for mouse enter
+			onMouseLeave={() => {setIsHovered(false)}}>//event handler for mouse leave
 			{children}
 		</span>
 	);
