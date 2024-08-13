@@ -54,7 +54,7 @@ function Component() {
 			<h2 className="mb-1">Tours</h2>
 			{tours.map((tour) => {
 				return (
-				<OnHoverHighlight key="1">
+				<OnHoverHighlight>
 					<p key={tour.id} className="mb-1" >
 						{tour.name}
 					</p>
