@@ -1,28 +1,38 @@
+
 import { useState } from 'react';
 import { type ToDo } from './types';
 
 type FormProps = {
-  addToDo: (toDo: ToDo) => void;
+  addToDo: (toDo: ToDo) => void;//overwrite, add a toDo item the state
 };
 
+
+/**
+ * takes the addToDo function as a prop and returns an 
+ * HTML form that can move text into the state
+ *
+ * @component
+ * @param {Object} props - The component props.
+ * @param {function} props.addToDo - The function to add a to-do item to the state.
+ * @returns {JSX.Element} The rendered form component.
+ */
 function Form({ addToDo: addTodo }: FormProps) {
   const [text, setText] = useState('');
 
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    //if the form is blank then alert the user
+    //if the form is blank then alert the user and do nothing
     if (!text) {
       alert('please enter a task');
       return;
     }
-    addTodo({//otherwise add the todo list
+    addTodo({//otherwise push the toDo item to the state
       id: new Date().getTime().toString(),
       description: text,
       isCompleted: false,
     });
 
-    setText('');
+    setText(''); //reset the form text
   };
 
   return (

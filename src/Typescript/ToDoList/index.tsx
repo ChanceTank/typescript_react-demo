@@ -1,6 +1,3 @@
-//demonstrates the use of typescript in a simple todo list application
-//making use of local storage to save data
-
 import { useState, useEffect } from 'react';
 import Form from './Form';
 import List from './List';
@@ -17,17 +14,30 @@ function updateStorage(toDoList: ToDo[]): void {
   localStorage.setItem('toDoList', JSON.stringify(toDoList));
 }
 
+
+/**
+ * Demonstrates the use of TypeScript in a simple todo list application
+ * making use of local storage to save data.
+ *
+ * @returns {ToDo[]} The loaded todo list from local storage.
+ */
 function Component() {
   //initializes the state with the data from local storage
   const [toDoState, setList] = useState<ToDo[]>(() => loadToDo());
 
   //adds a task to the state
-  const addTask = (toDo: ToDo): void => {
+  const addToDo = (toDo: ToDo): void => {
     setList([...toDoState, toDo]);
   };
   
-  //toggles the task completion status
-  //overwrites the function in the ListProps
+
+  /**
+   * toggles the task completion status
+   * overwrites the function in the ListProps
+   * 
+   * @param {Object} options - The options object.
+   * @param {string} options.id - The ID of the task to toggle.
+   */
   const toggleTask = ({ id }: { id: string }) => {
     setList(
       toDoState.map((toDo) => {
@@ -46,7 +56,7 @@ function Component() {
 
   return (
     <section>
-      <Form addToDo={addTask} />
+      <Form addToDo={addToDo} />
       <List toDoList={toDoState} toggleTask={toggleTask} />
     </section>
   );
