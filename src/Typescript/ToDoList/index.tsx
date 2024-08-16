@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Form from './Form';
 import List from './List';
 import { type ToDo } from './types';
+import ClearCompleted from './ClearCompleted';
 
 //pulls from local storage and loads into object
 function loadToDo(): ToDo[] {
@@ -30,6 +31,12 @@ function Component() {
     setList([...toDoState, toDo]);
   };
   
+  //removes all the completed tasks
+  const clearCompleted = (): void =>{
+    setList(toDoState.filter((toDo) => !toDo.isCompleted));
+  };
+
+
 
   /**
    * toggles the task completion status
@@ -58,6 +65,7 @@ function Component() {
     <section>
       <Form addToDo={addToDo} />
       <List toDoList={toDoState} toggleTask={toggleTask} />
+      <ClearCompleted clearCompleted={clearCompleted} />
     </section>
   );
 }
